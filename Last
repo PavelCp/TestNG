@@ -1,0 +1,51 @@
+C:\Users\November\TestNGSample2\1>mvn test
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building 1 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ 1 ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\November\TestNGSample2\1\src
+\main\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ 1 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\November\TestNGSample2\1\target\class
+es
+[INFO]
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ 1
+---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\November\TestNGSample2\1\src
+\test\resources
+[INFO]
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ 1 ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to C:\Users\November\TestNGSample2\1\target\test-
+classes
+[INFO]
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ 1 ---
+[INFO] Surefire report directory: C:\Users\November\TestNGSample2\1\target\suref
+ire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.testng.AppTest
+Configuring TestNG with: org.apache.maven.surefire.testng.conf.TestNG652Configur
+ator@17ed40e0
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 1.045 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 15.101 s
+[INFO] Finished at: 2017-03-07T01:46:57+02:00
+[INFO] Final Memory: 27M/268M
+[INFO] ------------------------------------------------------------------------
