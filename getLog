@@ -1,0 +1,10 @@
+    @AfterMethod
+    public void getLog(Method m) throws IOException{
+        LogEntries logEntries = driver.manage().logs().get("driver");
+        File driverLog = new File(m.getName() + ".log");
+        FileWriter out = new FileWriter(driverLog);
+        for (LogEntry logEntry :
+             logEntries.getAll()) {
+            out.write(logEntries.toString() + "\n");
+        }
+    }
