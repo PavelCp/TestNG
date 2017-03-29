@@ -8,3 +8,13 @@
             out.write(logEntries.toString() + "\n");
         }
     }
+
+/* 
+Fails with the following error message:
+org.openqa.selenium.UnsupportedCommandException: POST /session/ea872f7a-d0ed-4a4b-bdf6-509992525fd5/log did not match a known command
+Build info: version: '3.0.0', revision: '350cf60', time: '2016-10-13 10:48:57 -0700'
+System info: host: 'November-PC', ip: '192.168.0.101', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_112'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{rotatable=false, raisesAccessibilityExceptions=false, marionette=true, firefoxOptions={args=[], prefs={}}, appBuildId=20161031133903, version=, platform=XP, proxy={}, command_id=1, specificationLevel=0, acceptSslCerts=false, browserVersion=47.0.2, platformVersion=6.1, XULappId={ec8030f7-c20a-464f-9b0e-13a3a9e97384}, browserName=Firefox, takesScreenshot=true, takesElementScreenshot=true, platformName=Windows_NT, device=desktop}]
+Session ID: ea872f7a-d0ed-4a4b-bdf6-509992525fd5
+*/
