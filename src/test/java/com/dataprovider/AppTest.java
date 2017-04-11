@@ -1,13 +1,18 @@
-package com.testng;
+package com.dataprovider;
 
 
+import com.testng.TestFixtureMint;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Test
-public class    AppTest extends TestFixtureMint
+public class AppTest extends TestFixtureMint
 {
 
 
@@ -27,8 +32,8 @@ public class    AppTest extends TestFixtureMint
 
 
     //negative test case
-    @Test (groups = {"negative", "g1"})
-    @Parameters ({"invalidUser", "invalidPass"})
+    @Test (groups = {"negative", "g1"},
+            dataProvider = "dUsers")
     public void bothNeg(String invalidUser, String invalidPass) throws InterruptedException {
         driver.get("http://newtours.demoaut.com/");
         driver.findElement(By.xpath("//*[@name='userName']")).sendKeys(invalidUser);
@@ -39,20 +44,21 @@ public class    AppTest extends TestFixtureMint
     }
 
     //negative test case
-    @Test (groups = {"negative", "g1"})
-    @Parameters ({"invalidUser", "invalidPass"})
-    public void userNeg(String invalidUser, String validPass) throws InterruptedException {
-        driver.get("http://newtours.demoaut.com/");
-        driver.findElement(By.xpath("//*[@name='userName']")).sendKeys(invalidUser);
-        driver.findElement(By.xpath("//*[@name='password']")).sendKeys(validPass);
-        driver.findElement(By.xpath("//*[@name='login']")).click();
-        Thread.sleep(5000);
-        Assert.assertEquals(driver.getTitle(), "Sign-on: Mercury Tours");
-    }
+//    @Test (groups = {"negative", "g1"})
+
+//    public void userNeg(String invalidUser, String validPass) throws InterruptedException {
+//        driver.get("http://newtours.demoaut.com/");
+//        driver.findElement(By.xpath("//*[@name='userName']")).sendKeys(invalidUser);
+//        driver.findElement(By.xpath("//*[@name='password']")).sendKeys(validPass);
+//        driver.findElement(By.xpath("//*[@name='login']")).click();
+//        Thread.sleep(5000);
+//        Assert.assertEquals(driver.getTitle(), "Sign-on: Mercury Tours");
+//    }
 
     //negative test case
-    @Test (groups = {"negative", "g1"})
-    @Parameters ({"validUser", "invalidPass"})
+    @Test (groups = {"negative", "g1"},
+            dataProvider = "users")
+
     public void passNeg(String validUser, String invalidPass) throws InterruptedException {
         driver.get("http://newtours.demoaut.com/");
         driver.findElement(By.xpath("//*[@name='userName']")).sendKeys(validUser);
@@ -64,8 +70,10 @@ public class    AppTest extends TestFixtureMint
         Assert.assertEquals(driver.getTitle(), "Sign-on: Mercury Tours");
     }
 
-    @Test (groups = {"positive"})
-    @Parameters ({"validUser", "validPass"})
+    @Test (groups = {"positive"},
+            dataProviderClass = POI.class,
+            dataProvider = "getData")
+
     public void login(String validUser, String validPass) throws InterruptedException {
         driver.get("http://newtours.demoaut.com/");
         driver.findElement(By.xpath("//*[@name='userName']")).sendKeys(validUser);
@@ -76,30 +84,22 @@ public class    AppTest extends TestFixtureMint
         Assert.assertEquals(driver.getTitle(), "Sign-on: Mercury Tours");
     }
 
-    @Test (groups = {"positive"})
-//    @Parameters ({"validUser", "validPass"})@Optional String validUser, @Optional String validPass
-    public void log() throws InterruptedException {
-        driver.get("http://newtours.demoaut.com/");
-        driver.findElement(By.xpath("//*[@name='userName']")).sendKeys("test");
-        driver.findElement(By.xpath("//*[@name='password']")).sendKeys("test");
-        Assert.assertEquals(driver.findElement(By.xpath("//*[@name='home']//td[1]/img")).isDisplayed(), false);
-        driver.findElement(By.xpath("//*[@name='login']")).click();
-        Thread.sleep(5000);
-        Assert.assertEquals(driver.getTitle(), "Sign-on: Mercury Tour");
+    @DataProvider
+    public Iterator<Object[]> users(){
+        List<Object[]> data = new ArrayList<>();
+
+        data.add(new Object[]{"test", "test"});
+        data.add(new Object[]{"test123", "test123"});
+
+        return data.iterator();
     }
 
-    @Test
-    @NeedFreshDriver
-    public void test3(){
-        System.out.println("test3");
-        driver.get("http://seleniumhq.org/");
+    @DataProvider
+    public Iterator<Object[]> dUsers(){
+        List<Object[]> data = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            data.add(new Object[]{"test" + i, "test" + i});
+        }
+        return data.iterator();
     }
-
-    @Test
-    @SkippedIn(DriverType.FIREFOX)
-    public void test4(){
-        System.out.println("test4");
-        driver.get("http://seleniumhq.org/");
-    }
-
 }
